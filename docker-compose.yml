@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: meetscribe_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: meetscribe
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./backend/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
